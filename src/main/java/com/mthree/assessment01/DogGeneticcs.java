@@ -39,7 +39,7 @@ public class DogGeneticcs {
                 }
                 if(!found)
                 randomBreeds[i] = breeds[temp];
-                //Here, if the breed wasn't found, we simply subtract one from 'i' to re-run the same loop and get a new breed.
+                //Here, if the breed was found, we simply subtract one from 'i' to re-run the same loop and get a new breed.
                 else
                     i--;
             }

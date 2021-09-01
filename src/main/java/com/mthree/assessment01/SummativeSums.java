@@ -16,14 +16,14 @@ public class SummativeSums {
         int[] array1 = { 1, 90, -33, -55, 67, -16, 28, -55, 15 }, array2 = { 999, -60, -77, 14, 160, 301 }, array3 = { 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110,
             120, 130, 140, 150, 160, 170, 180, 190, 200, -99} ;
         
-        sumArrays(array1);
-        sumArrays(array2);
-        sumArrays(array3);        
+        sumArray(array1);
+        sumArray(array2);
+        sumArray(array3);        
     }
     
-    public static int sumArrays(int[] arr){
+    public static int sumArray(int[] arr){
         
-        //Method is pretty self explanatory. Initialize a sum at 0, loop through each item in an array and  add them to the sum. Keep track of which array with
+        //Method is pretty self explanatory. Initialize a sum at 0, loop through each item in an array and add them to the sum. Keep track of which item with
         //a counter.
         int sum = 0;
         for(int i: arr){
