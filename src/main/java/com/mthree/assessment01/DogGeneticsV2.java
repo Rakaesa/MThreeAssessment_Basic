@@ -62,10 +62,7 @@ public class DogGeneticsV2 {
         }
         System.out.println("Your dog is ");
         breedCounts.forEach((k, v)->{
-            System.out.print(((double)(v/(Math.pow(2,generations)))*100)+"% "+breeds.get(k)+", ");
-            
-        });
-        
-    }
-    
+            System.out.print(((double)(v/(Math.pow(2,generations)))*100)+"% "+breeds.get(k)+", ");            
+        });    
+    }    
 }
