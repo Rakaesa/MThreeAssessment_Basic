@@ -79,24 +79,21 @@ public class RockPaperScissors {
         int[] rock = {0,2,1};
         int[] paper = {1,0,2};
         int[] scissors = {2,1,0};
-        int result;
+        int result = 0;
         System.out.println("User: "+inp1);
         System.out.println("Computer: "+inp2);
         //New and improved switch. Uses the correct array from the 3 above based on user selection (the case).
-        //It then calls the 'checkresult' method which is a few simple if/else's to add to the correct score.
             switch(inp1){
                 case 1:
-                    result = rock[(inp2-1)];
-                    scores[result]+=1;   
+                    result = rock[(inp2-1)];  
                     break;
                 case 2:
-                    result = paper[(inp2-1)];
-                    scores[result]+=1;   
+                    result = paper[(inp2-1)];  
                     break;
                 case 3:
                     result = scissors[(inp2-1)];
-                    scores[result]+=1;   
                     break;
             }
+            scores[result]+=1;  
     }    
 }
