@@ -9,9 +9,7 @@ import java.util.Scanner;
 import java.util.Random;
 
 public class RockPaperScissors {
-    //The simplest way to keep track of scores between the main and the method is by making them static.
-    public static void main(String[] args){
-        
+    public static void main(String[] args){        
         //Initialize all our variables, scanner, and random.
         Scanner sc = new Scanner(System.in);
         Random rand = new Random();
@@ -89,29 +87,16 @@ public class RockPaperScissors {
             switch(inp1){
                 case 1:
                     result = rock[(inp2-1)];
-                    scores = checkResult(result, scores);
+                    scores[result]+=1;   
                     break;
                 case 2:
                     result = paper[(inp2-1)];
-                    scores = checkResult(result, scores);
+                    scores[result]+=1;   
                     break;
                 case 3:
                     result = scissors[(inp2-1)];
-                    scores = checkResult(result, scores);
+                    scores[result]+=1;   
                     break;
             }
-    }
-    
-    public static int[] checkResult(int result,int[] scores){
-        
-        if(result==0)
-            scores[0]+=1;
-        else if(result==1)
-            scores[1]+=1;
-        else if(result==2)
-            scores[2]+=1;
-        
-        return scores;
-        
-    }
+    }    
 }
