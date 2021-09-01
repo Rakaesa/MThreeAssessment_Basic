@@ -10,13 +10,13 @@ import java.util.Random;
 
 public class RockPaperScissors {
     //The simplest way to keep track of scores between the main and the method is by making them static.
-    static int score1 = 0, score2 = 0, draws = 0;
     public static void main(String[] args){
         
         //Initialize all our variables, scanner, and random.
         Scanner sc = new Scanner(System.in);
         Random rand = new Random();
         int rounds, inp1, inp2;
+        int[] scores = {0,0,0};
         boolean playAgain = false;
         String response;
         
@@ -25,9 +25,9 @@ public class RockPaperScissors {
         //A do-while loop will ensure that it runs at least once.
         do{
             //Reset the scores, in case the user has ran it more than once.
-            score1 = 0;
-            score2 = 0;
-            draws = 0;
+            scores[0]=0;
+            scores[1]=0;
+            scores[2]=0;
             //Ask the user for the # of rounds.
             System.out.println("Please enter a number of rounds between 1 and 10.");
             rounds = sc.nextInt();
@@ -39,92 +39,79 @@ public class RockPaperScissors {
             //Start the for loop for the rounds.
             for(int i = 0;i<rounds;i++){
                 System.out.println("Player 1, enter 1 (Rock), 2(Paper), or 3(Scissors)!");
-                if(!((inp1 = sc.nextInt()) == (int)inp1)){
+                if(!((inp1 = sc.nextInt()) == (int)inp1)||inp1<0||inp1>3){
                     System.out.println("Invalid entry. Please enter 1, 2, or 3. Exiting.");
                     System.exit(0);
                 }
                 inp2 = rand.nextInt(3)+1;
                 //This method compares the two inputs and changes the scores accordingly.
-                rockPaperScissors(inp1, inp2);
+                rockPaperScissors(inp1, inp2, scores);
             }
             //Display the scores after n rounds
-            System.out.println("User wins :"+score1);
-            System.out.println("Computer wins: "+score2);
-            System.out.println("Draws : "+draws);
+            System.out.println("User wins :"+scores[1]);
+            System.out.println("Computer wins: "+scores[2]);
+            System.out.println("Draws : "+scores[0]);
             //Display who the victor is (if there is one!)
-            if(score1>score2){
+            if(scores[1]>scores[2]){
                 System.out.println("User wins!!");
             }
-            else if(score2>score1){
+            else if(scores[2]>scores[1]){
                 System.out.println("Computer wins!!");
             }
-            else if(score1==score2){
+            else if(scores[1]==scores[2]){
                 System.out.println("A tie!!");
             }
             //Skip a line to get rid of the extra empty space. Without this, it automatically takes an empty space as the next input.
-                sc.nextLine();
-                //Ask the user if they'd like to play again, adjust the 'playAgain' flag accordingly.
-                System.out.println("Do you want to play again? (Y/N)");
-                response = sc.nextLine();
-                if((response.equals("Y"))||(response.equals("y")))
-                    playAgain=true;
-                else{
-                    playAgain=false;
-                    System.out.println(response);
-                    System.out.println("Thanks for playing!");
-                }           
-            }
-        while(playAgain);
-            
+            sc.nextLine();
+            //Ask the user if they'd like to play again, adjust the 'playAgain' flag accordingly.
+            System.out.println("Do you want to play again? (Y/N)");
+            response = sc.nextLine();
+            if((response.equals("Y"))||(response.equals("y")))
+                playAgain=true;
+            else{
+                playAgain=false;
+                System.out.println(response);
+                System.out.println("Thanks for playing!");
+            }           
+        }
+        while(playAgain);            
     }
-    public static void rockPaperScissors(int inp1, int inp2){
-            
+    public static void rockPaperScissors(int inp1, int inp2, int[] scores){        
+        //These are arrays of pre-defined outcomes to rock paper scissors. [0] is rock, [1] is paper, [2] is scissors.
+        int[] rock = {0,2,1};
+        int[] paper = {1,0,2};
+        int[] scissors = {2,1,0};
+        int result;
         System.out.println("User: "+inp1);
         System.out.println("Computer: "+inp2);
+        //New and improved switch. Uses the correct array from the 3 above based on user selection (the case).
+        //It then calls the 'checkresult' method which is a few simple if/else's to add to the correct score.
             switch(inp1){
                 case 1:
-                    if(inp2==2){
-                    score2++;
-                    System.out.println("Computer wins!");
-                }
-                else if(inp2==3){
-                    score1++;
-                    System.out.println("User wins!");
-                }
-                else{
-                    draws++;
-                    System.out.println("Draw!");
-                }
+                    result = rock[(inp2-1)];
+                    scores = checkResult(result, scores);
+                    break;
                 case 2:
-                    if(inp2==1){
-                    score1++;
-                    System.out.println("User wins!");
-                }
-                else if(inp2==2){
-                    draws++;
-                    System.out.println("Draw!");
-                }
-                else{
-                    score2++;
-                    System.out.println("Computer wins!");
-                }
+                    result = paper[(inp2-1)];
+                    scores = checkResult(result, scores);
+                    break;
                 case 3:
-                    if(inp2==1){
-                    score2++;
-                    System.out.println("Computer wins!");
-                }
-                else if(inp2==2){
-                    score1++;
-                    System.out.println("User wins!");
-                }
-                else{
-                    draws++;
-                    System.out.println("Draw!");
-                }
-                    //If anything other than 1, 2, or 3 are entered...
-                default:
-                    System.out.println("Invalid selection. Exiting.");
-                    System.exit(0);
+                    result = scissors[(inp2-1)];
+                    scores = checkResult(result, scores);
+                    break;
             }
+    }
+    
+    public static int[] checkResult(int result,int[] scores){
+        
+        if(result==0)
+            scores[0]+=1;
+        else if(result==1)
+            scores[1]+=1;
+        else if(result==2)
+            scores[2]+=1;
+        
+        return scores;
+        
     }
 }
