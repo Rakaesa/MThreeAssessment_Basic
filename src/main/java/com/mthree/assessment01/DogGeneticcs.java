@@ -36,10 +36,10 @@ public class DogGeneticcs {
         int[] breedPercents = new int[numBreeds];
         System.out.println("Well then, I have this highly reliable report on "+name+"'s prestigious background right here.");
         
-        //Begin a loop to randomly select 5 breeds from the previously defined array.
+        //Begin a loop to randomly select 5 breeds from the previously defined list.
             for(int i=0; i<numBreeds; i++){
                 int temp = rand.nextInt(breeds.size());
-                //Check if the selected breed is already in the randomBreeds array.
+                //Check if the selected breed is already in the randomBreeds list.
                 if(!randomBreeds.contains(breeds.get(temp)))
                 randomBreeds.add(breeds.get(temp));
                 //Here, if the breed was found, we simply subtract one from 'i' to re-run the same loop and get a new breed.
@@ -47,7 +47,7 @@ public class DogGeneticcs {
                     i--;
             }
             //Next we need a loop to assign random percentages to each breed, adding up to 100.
-            //Getting 5 random percentages that add up to 100 is actually very hard without some complex algorithms.
+            //Getting random percentages that add up to 100 is actually very hard without some complex algorithms.
             //With the simplest solution, we run the risk of getting some 0%'s.
             for(int i=0; i<numBreeds; i++){
                 if(i!=(numBreeds-1)){
